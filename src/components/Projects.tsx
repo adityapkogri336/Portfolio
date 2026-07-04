@@ -1,20 +1,14 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { projects } from "../data/portfolio";
 import { GitFork, ExternalLink, ChevronRight } from "lucide-react";
 
 export type Project = (typeof projects)[number];
 
-const allCategories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
-
 interface ProjectsProps {
   onSelectProject: (project: Project) => void;
 }
 
 export default function Projects({ onSelectProject }: ProjectsProps) {
-  const [active, setActive] = useState("All");
-  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
-
   return (
     <section id="projects" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <div style={{ marginBottom: 48 }}>
@@ -27,26 +21,9 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
         <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />
       </div>
 
-      {/* Filter tabs */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 40 }}>
-        {allCategories.map((cat) => (
-          <button key={cat} onClick={() => setActive(cat)} style={{
-            padding: "6px 16px",
-            border: `1px solid ${active === cat ? "var(--accent-cyan)" : "var(--border)"}`,
-            borderRadius: 20,
-            background: active === cat ? "var(--accent-cyan)" : "transparent",
-            color: active === cat ? "var(--bg-primary)" : "var(--text-secondary)",
-            fontFamily: "var(--font-mono)", fontSize: 12,
-            cursor: "pointer", transition: "all 0.2s", fontWeight: active === cat ? 700 : 400,
-          }}>
-            {cat}
-          </button>
-        ))}
-      </div>
-
       {/* Project cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 24 }} className="projects-grid">
-        {filtered.map((project) => (
+        {projects.map((project) => (
           <div key={project.id} onClick={() => onSelectProject(project)} style={{
             background: "var(--bg-card)",
             border: "1px solid var(--border)",
