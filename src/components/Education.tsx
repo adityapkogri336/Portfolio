@@ -1,90 +1,96 @@
 import { education, publications, certifications } from "../data/portfolio";
-import { BookOpen, Award, FileText } from "lucide-react";
+import { FileText, Award } from "lucide-react";
 
 export default function Education() {
   return (
     <section id="education" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <div style={{ marginBottom: 60 }}>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
-          05. education & more
+          05. education
         </p>
         <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700 }}>
-          Academic Background
+          Education
         </h2>
         <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }} className="edu-grid">
-        {/* Left: Degrees */}
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-            <BookOpen size={18} color="var(--accent-cyan)" />
-            <h3 style={{ fontSize: 15, fontWeight: 600, fontFamily: "var(--font-mono)", color: "var(--text-secondary)" }}>
-              Degrees
-            </h3>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {education.map((edu, i) => (
-              <div key={i} style={{
-                background: "var(--bg-card)",
-                border: "1px solid var(--border)",
-                borderRadius: 12, padding: "24px",
-                borderLeft: "3px solid var(--accent-cyan)",
-                transition: "transform 0.2s",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.transform = "translateX(4px)")}
-              onMouseLeave={e => (e.currentTarget.style.transform = "translateX(0)")}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 4, marginBottom: 6 }}>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent-cyan)" }}>
-                    {edu.duration}
-                  </span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent-green)" }}>
-                    GPA: {edu.gpa}
-                  </span>
-                </div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>
-                  {edu.degree}
-                </h4>
-                <p style={{ fontSize: 13, color: "var(--accent-cyan)", marginBottom: 4, fontFamily: "var(--font-mono)" }}>
-                  {edu.school} · {edu.location}
-                </p>
-                <p style={{ fontSize: 12, color: "var(--text-muted)" }}>
-                  Focus: {edu.focus}
-                </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+        {education.map((edu, i) => (
+          <div key={i} style={{
+            paddingBottom: i < education.length - 1 ? 40 : 0,
+            borderBottom: i < education.length - 1 ? "1px solid var(--border)" : "none",
+          }}>
+            {/* Header row: school + location */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: "var(--text-primary)" }}>
+                {edu.school}
+              </h3>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-secondary)" }}>
+                {edu.location}
+              </span>
+            </div>
+
+            {/* Sub-row: degree + dates */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginTop: 4 }}>
+              <p style={{ fontSize: 15, color: "var(--accent-cyan)", fontFamily: "var(--font-mono)" }}>
+                {edu.degree}
+              </p>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-muted)" }}>
+                {edu.duration}
+              </span>
+            </div>
+
+            {/* GPA */}
+            <p style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 8, fontFamily: "var(--font-mono)" }}>
+              GPA: {edu.gpa}
+            </p>
+
+            {(edu.focus || edu.thesis) && (
+              <div style={{ marginTop: 8 }}>
+                {edu.focus && (
+                  <p style={{ fontSize: 13, color: "var(--text-muted)" }}>
+                    Focus: {edu.focus}
+                  </p>
+                )}
                 {edu.thesis && (
-                  <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 4, fontStyle: "italic" }}>
+                  <p style={{ fontSize: 13, color: "var(--text-muted)", fontStyle: "italic", marginTop: 2 }}>
                     Thesis: {edu.thesis}
                   </p>
                 )}
-                {edu.coursework.length > 0 && (
-                  <div style={{ marginTop: 12 }}>
-                    <p style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 6, textTransform: "uppercase", letterSpacing: 1 }}>
-                      Relevant Coursework
-                    </p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                      {edu.coursework.map((c) => (
-                        <span key={c} style={{
-                          padding: "2px 8px", borderRadius: 4,
-                          background: "rgba(0,212,255,0.06)",
-                          border: "1px solid rgba(0,212,255,0.15)",
-                          fontFamily: "var(--font-mono)", fontSize: 10,
-                          color: "var(--text-muted)",
-                        }}>{c}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
-            ))}
-          </div>
-        </div>
+            )}
 
-        {/* Right: Publications + Certs */}
-        <div>
-          {/* Publications */}
+            {/* Coursework */}
+            {edu.coursework.length > 0 && (
+              <div style={{ marginTop: 24 }}>
+                <p style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>
+                  Relevant Coursework
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {edu.coursework.map((c) => (
+                    <span key={c} style={{
+                      padding: "3px 10px",
+                      background: "rgba(0,212,255,0.06)",
+                      border: "1px solid rgba(0,212,255,0.15)",
+                      borderRadius: 4,
+                      fontFamily: "var(--font-mono)", fontSize: 11,
+                      color: "var(--text-muted)",
+                    }}>
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Publications + Certifications (only render if data exists) */}
+      {(publications.length > 0 || certifications.length > 0) && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 56 }} className="edu-extras-grid">
           {publications.length > 0 && (
-            <div style={{ marginBottom: 36 }}>
+            <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
                 <FileText size={18} color="var(--accent-cyan)" />
                 <h3 style={{ fontSize: 15, fontWeight: 600, fontFamily: "var(--font-mono)", color: "var(--text-secondary)" }}>
@@ -118,7 +124,6 @@ export default function Education() {
             </div>
           )}
 
-          {/* Certifications */}
           {certifications.length > 0 && (
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
@@ -151,11 +156,11 @@ export default function Education() {
             </div>
           )}
         </div>
-      </div>
+      )}
 
       <style>{`
         @media (max-width: 768px) {
-          .edu-grid { grid-template-columns: 1fr !important; }
+          .edu-extras-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
