@@ -2,8 +2,8 @@ import { skills } from "../data/portfolio";
 import { Cpu, Code2, Wrench, Layers } from "lucide-react";
 
 const categories = [
-  { key: "hardware" as const, label: "Hardware & EE", icon: <Cpu size={18} />, color: "var(--accent-cyan)" },
-  { key: "software" as const, label: "Software & Programming", icon: <Code2 size={18} />, color: "var(--accent-green)" },
+  { key: "hardware" as const, label: "Hardware & EE", icon: <Cpu size={18} />, color: "#00d4ff" },
+  { key: "software" as const, label: "Software & Programming", icon: <Code2 size={18} />, color: "#00ff88" },
   { key: "tools" as const, label: "Tools & Platforms", icon: <Wrench size={18} />, color: "#a78bfa" },
   { key: "domains" as const, label: "Domains", icon: <Layers size={18} />, color: "#fb923c" },
 ];
