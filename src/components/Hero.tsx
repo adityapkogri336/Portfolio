@@ -136,6 +136,26 @@ export default function Hero() {
           {personalInfo.title} @ {personalInfo.university}
         </h2>
 
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 8,
+          padding: "6px 16px", marginBottom: 24,
+          border: "1px solid var(--border)",
+          borderRadius: 20,
+          background: "rgba(0,255,136,0.06)",
+        }}>
+          <span style={{
+            width: 8, height: 8, borderRadius: "50%",
+            background: "var(--accent-green)",
+            boxShadow: "0 0 8px var(--accent-green)",
+          }} />
+          <span style={{
+            fontFamily: "var(--font-mono)", fontSize: 12,
+            color: "var(--accent-green)", letterSpacing: 0.5,
+          }}>
+            {personalInfo.availability}
+          </span>
+        </div>
+
         <p style={{
           fontSize: 16, color: "var(--text-secondary)",
           marginBottom: 40, maxWidth: 560, margin: "0 auto 40px",

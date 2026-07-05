@@ -42,40 +42,16 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
           }}
           >
             {/* Card header */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-              <div>
-                <span style={{
-                  fontFamily: "var(--font-mono)", fontSize: 11,
-                  color: "var(--accent-cyan)", textTransform: "uppercase", letterSpacing: 2,
-                }}>
-                  {project.category}
-                </span>
-                <motion.h3 layoutId={`project-title-${project.id}`} style={{ fontSize: 18, fontWeight: 700, marginTop: 4, color: "var(--text-primary)" }}>
-                  {project.title}
-                </motion.h3>
-              </div>
-              <div style={{ display: "flex", gap: 12 }}>
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                    style={{ color: "var(--text-muted)", transition: "color 0.2s" }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "var(--accent-cyan)")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}
-                  >
-                    <GitFork size={18} />
-                  </a>
-                )}
-                {project.demo && (
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                    style={{ color: "var(--text-muted)", transition: "color 0.2s" }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "var(--accent-cyan)")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}
-                  >
-                    <ExternalLink size={18} />
-                  </a>
-                )}
-              </div>
+            <div style={{ marginBottom: 16 }}>
+              <span style={{
+                fontFamily: "var(--font-mono)", fontSize: 11,
+                color: "var(--accent-cyan)", textTransform: "uppercase", letterSpacing: 2,
+              }}>
+                {project.category}
+              </span>
+              <motion.h3 layoutId={`project-title-${project.id}`} style={{ fontSize: 18, fontWeight: 700, marginTop: 4, color: "var(--text-primary)" }}>
+                {project.title}
+              </motion.h3>
             </div>
 
             <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.75, marginBottom: 20 }}>
@@ -93,7 +69,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
             </div>
 
             {/* Tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto", marginBottom: (project.github || project.demo) ? 16 : 0 }}>
               {project.tags.map((tag) => (
                 <span key={tag} style={{
                   padding: "3px 10px",
@@ -107,6 +83,62 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                 </span>
               ))}
             </div>
+
+            {/* Links */}
+            {(project.github || project.demo) && (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 6,
+                      padding: "6px 14px",
+                      background: "var(--bg-primary)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 20,
+                      color: "var(--text-secondary)",
+                      fontFamily: "var(--font-mono)", fontSize: 12,
+                      transition: "border-color 0.2s, color 0.2s",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-cyan)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
+                    }}
+                  >
+                    <GitFork size={14} /> GitHub
+                  </a>
+                )}
+                {project.demo && (
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 6,
+                      padding: "6px 14px",
+                      background: "var(--bg-primary)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 20,
+                      color: "var(--text-secondary)",
+                      fontFamily: "var(--font-mono)", fontSize: 12,
+                      transition: "border-color 0.2s, color 0.2s",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-cyan)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
+                    }}
+                  >
+                    <ExternalLink size={14} /> Live Demo
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>

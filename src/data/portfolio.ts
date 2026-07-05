@@ -8,6 +8,7 @@ export const personalInfo = {
   linkedin: "https://linkedin.com/in/aditya-p-kogri",
   github: "",
   resumeUrl: "/resume.pdf",
+  availability: "Available for Co-op - July",
   bio: "Graduate Electrical Engineering student at Arizona State University with hands-on experience across the full ASIC design flow - RTL design, logic synthesis, physical design, and design verification - spanning 7nm FinFET and 32nm process technologies.",
   tagline: "// RTL to GDSII, one signoff at a time",
 };
