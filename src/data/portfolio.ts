@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Aditya Pradeep Kogri",
-  title: "MS Electrical Engineering - ASIC Design",
+  title: "MS Electrical Engineering",
   university: "Arizona State University",
   graduationYear: "2026",
   location: "Tempe, AZ",
