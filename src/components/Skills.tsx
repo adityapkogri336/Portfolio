@@ -8,32 +8,6 @@ const categories = [
   { key: "domains" as const, label: "Domains", icon: <Layers size={18} />, color: "#fb923c" },
 ];
 
-function SkillTag({ text, color }: { text: string; color: string }) {
-  return (
-    <span style={{
-      padding: "6px 14px",
-      border: `1px solid ${color}33`,
-      borderRadius: 20,
-      fontFamily: "var(--font-mono)", fontSize: 12,
-      color: color,
-      background: `${color}0d`,
-      transition: "all 0.2s", display: "inline-block", cursor: "default",
-      whiteSpace: "nowrap",
-    }}
-    onMouseEnter={e => {
-      (e.currentTarget as HTMLElement).style.background = `${color}22`;
-      (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-    }}
-    onMouseLeave={e => {
-      (e.currentTarget as HTMLElement).style.background = `${color}0d`;
-      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-    }}
-    >
-      {text}
-    </span>
-  );
-}
-
 export default function Skills() {
   return (
     <section id="skills" style={{
@@ -53,29 +27,54 @@ export default function Skills() {
           <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />
         </div>
 
-        <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr",
-          gap: 24,
-        }} className="skills-grid">
-          {categories.map((cat) => (
-            <div key={cat.key} style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
-              borderRadius: 12, padding: "28px",
-              transition: "border-color 0.2s",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.borderColor = cat.color)}
-            onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-                <span style={{ color: cat.color }}>{cat.icon}</span>
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {categories.map((cat, i) => (
+            <div key={cat.key} className="skill-row" style={{
+              display: "flex", gap: 32,
+              padding: "28px 0",
+              borderTop: i === 0 ? "1px solid var(--border)" : "none",
+              borderBottom: "1px solid var(--border)",
+            }}>
+              {/* Label column */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, width: 220, flexShrink: 0 }} className="skill-row-label">
+                <span style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: 40, height: 40, borderRadius: 10,
+                  background: `${cat.color}1a`,
+                  color: cat.color, flexShrink: 0,
+                }}>
+                  {cat.icon}
+                </span>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
                   {cat.label}
                 </h3>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+
+              {/* Skill badges */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignContent: "flex-start", flex: 1 }}>
                 {skills[cat.key].map((skill) => (
-                  <SkillTag key={skill} text={skill} color={cat.color} />
+                  <span key={skill} style={{
+                    padding: "6px 14px",
+                    borderRadius: 20,
+                    border: `1px solid ${cat.color}55`,
+                    background: "transparent",
+                    color: cat.color,
+                    fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 600,
+                    whiteSpace: "nowrap",
+                    transition: "background 0.15s, border-color 0.15s",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.background = `${cat.color}1a`;
+                    (e.currentTarget as HTMLElement).style.borderColor = cat.color;
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.background = "transparent";
+                    (e.currentTarget as HTMLElement).style.borderColor = `${cat.color}55`;
+                  }}
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
@@ -85,7 +84,8 @@ export default function Skills() {
 
       <style>{`
         @media (max-width: 768px) {
-          .skills-grid { grid-template-columns: 1fr !important; }
+          .skill-row { flex-direction: column !important; gap: 16px !important; }
+          .skill-row-label { width: auto !important; }
         }
       `}</style>
     </section>
