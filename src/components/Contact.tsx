@@ -1,7 +1,11 @@
 import { personalInfo } from "../data/portfolio";
 import { Mail, Link2, FileDown, Send } from "lucide-react";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 export default function Contact() {
+  const { copied: ctaCopied, copy: copyCta } = useCopyToClipboard();
+  const { copied: rowCopied, copy: copyRow } = useCopyToClipboard();
+
   return (
     <section id="contact" style={{
       padding: "140px 2rem",
@@ -20,7 +24,10 @@ export default function Contact() {
         </p>
 
         {/* Email CTA */}
-        <a href={`mailto:${personalInfo.email}`} style={{
+        <a href={`mailto:${personalInfo.email}`}
+          onClick={() => copyCta(personalInfo.email)}
+          style={{
+          position: "relative",
           display: "inline-flex", alignItems: "center", gap: 10,
           padding: "14px 32px",
           background: "var(--accent-cyan)", color: "#ffffff",
@@ -33,6 +40,16 @@ export default function Contact() {
         >
           <Send size={16} />
           Say Hello
+          {ctaCopied && (
+            <span style={{
+              position: "absolute", top: -34, left: "50%", transform: "translateX(-50%)",
+              background: "var(--text-primary)", color: "#ffffff",
+              fontSize: 12, padding: "5px 12px", borderRadius: 980,
+              whiteSpace: "nowrap", fontFamily: "var(--font-display)", fontWeight: 500,
+            }}>
+              Email copied!
+            </span>
+          )}
         </a>
 
         {/* Divider */}
@@ -50,7 +67,9 @@ export default function Contact() {
             { icon: <FileDown size={20} />, label: "Resume", href: personalInfo.resumeUrl },
           ].map((link) => (
             <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+              onClick={link.label === "Email" ? () => copyRow(personalInfo.email) : undefined}
               style={{
+                position: "relative",
                 display: "flex", alignItems: "center", gap: 8,
                 padding: "10px 20px",
                 background: "var(--bg-card)",
@@ -70,6 +89,16 @@ export default function Contact() {
             >
               {link.icon}
               {link.label}
+              {link.label === "Email" && rowCopied && (
+                <span style={{
+                  position: "absolute", top: -34, left: "50%", transform: "translateX(-50%)",
+                  background: "var(--text-primary)", color: "#ffffff",
+                  fontSize: 12, padding: "5px 12px", borderRadius: 980,
+                  whiteSpace: "nowrap", fontFamily: "var(--font-display)", fontWeight: 500,
+                }}>
+                  Copied!
+                </span>
+              )}
             </a>
           ))}
         </div>

@@ -1,7 +1,10 @@
 import { Link2, Mail, ChevronDown } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 export default function Hero() {
+  const { copied, copy } = useCopyToClipboard();
+
   const scrollDown = () => {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -87,7 +90,9 @@ export default function Hero() {
             View Projects
           </button>
           <a href={`mailto:${personalInfo.email}`}
+            onClick={() => copy(personalInfo.email)}
             style={{
+              position: "relative",
               padding: "13px 30px",
               background: "transparent", color: "var(--accent-cyan)",
               border: "1px solid var(--border)", borderRadius: 980,
@@ -98,6 +103,16 @@ export default function Hero() {
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
           >
             Get In Touch
+            {copied && (
+              <span style={{
+                position: "absolute", top: -34, left: "50%", transform: "translateX(-50%)",
+                background: "var(--text-primary)", color: "#ffffff",
+                fontSize: 12, padding: "5px 12px", borderRadius: 980,
+                whiteSpace: "nowrap", fontFamily: "var(--font-display)", fontWeight: 500,
+              }}>
+                Email copied!
+              </span>
+            )}
           </a>
         </div>
 
