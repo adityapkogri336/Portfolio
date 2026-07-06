@@ -5,13 +5,13 @@ export default function About() {
   const grad = education[0];
 
   return (
-    <section id="about" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="about" style={{ padding: "140px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       {/* Section header */}
       <div style={{ marginBottom: 60 }}>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
           01. about
         </p>
-        <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700, color: "var(--text-primary)" }}>
+        <h2 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 600, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
           Who I Am
         </h2>
         <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />

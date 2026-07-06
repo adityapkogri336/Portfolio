@@ -129,7 +129,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 700,
                 lineHeight: 1.1, marginBottom: 20,
-                background: "linear-gradient(135deg, #e8f4f8 40%, var(--accent-cyan))",
+                background: "linear-gradient(135deg, #1d1d1f 40%, #86868b)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               }}
             >
@@ -145,8 +145,8 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                 {project.tags.map((tag) => (
                   <span key={tag} style={{
                     padding: "3px 10px",
-                    background: "rgba(0,212,255,0.06)",
-                    border: "1px solid rgba(0,212,255,0.15)",
+                    background: "rgba(0,0,0,0.035)",
+                    border: "1px solid rgba(0,0,0,0.12)",
                     borderRadius: 4,
                     fontFamily: "var(--font-mono)", fontSize: 11,
                     color: "var(--text-muted)",
@@ -190,7 +190,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                         <div style={{
                           width: 32, height: 32, borderRadius: "50%",
                           border: "1px solid var(--accent-green)",
-                          background: "rgba(0,255,136,0.08)",
+                          background: "rgba(0,0,0,0.05)",
                           color: "var(--accent-green)",
                           fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 700,
                           display: "flex", alignItems: "center", justifyContent: "center",
@@ -309,7 +309,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                       padding: "10px 20px",
                       background: "transparent",
                       border: "1px solid var(--border)",
-                      borderRadius: 8,
+                      borderRadius: 980,
                       color: "var(--text-primary)",
                       fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 500,
                       textDecoration: "none", transition: "border-color 0.2s",
@@ -326,9 +326,9 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                       padding: "10px 20px",
                       background: "var(--accent-cyan)",
                       border: "1px solid var(--accent-cyan)",
-                      borderRadius: 8,
-                      color: "var(--bg-primary)",
-                      fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 700,
+                      borderRadius: 980,
+                      color: "#ffffff",
+                      fontFamily: "var(--font-display)", fontSize: 14, fontWeight: 500,
                       textDecoration: "none",
                     }}>
                       <ExternalLink size={16} /> Live Demo

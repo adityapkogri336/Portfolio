@@ -2,16 +2,16 @@ import { skills } from "../data/portfolio";
 import { Cpu, Code2, Wrench, Layers } from "lucide-react";
 
 const categories = [
-  { key: "hardware" as const, label: "Hardware & EE", icon: <Cpu size={18} />, color: "#00d4ff" },
-  { key: "software" as const, label: "Software & Programming", icon: <Code2 size={18} />, color: "#00ff88" },
-  { key: "tools" as const, label: "Tools & Platforms", icon: <Wrench size={18} />, color: "#a78bfa" },
-  { key: "domains" as const, label: "Domains", icon: <Layers size={18} />, color: "#fb923c" },
+  { key: "hardware" as const, label: "Hardware & EE", icon: <Cpu size={18} />, color: "#1d1d1f" },
+  { key: "software" as const, label: "Software & Programming", icon: <Code2 size={18} />, color: "#424245" },
+  { key: "tools" as const, label: "Tools & Platforms", icon: <Wrench size={18} />, color: "#6e6e73" },
+  { key: "domains" as const, label: "Domains", icon: <Layers size={18} />, color: "#86868b" },
 ];
 
 export default function Skills() {
   return (
     <section id="skills" style={{
-      padding: "100px 2rem",
+      padding: "140px 2rem",
       background: "var(--bg-secondary)",
       borderTop: "1px solid var(--border)",
       borderBottom: "1px solid var(--border)",
@@ -21,7 +21,7 @@ export default function Skills() {
           <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
             02. skills
           </p>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700 }}>
+          <h2 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 600, letterSpacing: "-0.02em" }}>
             Technical Arsenal
           </h2>
           <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />

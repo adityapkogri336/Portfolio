@@ -4,7 +4,7 @@ import { Mail, Link2, FileDown, Send } from "lucide-react";
 export default function Contact() {
   return (
     <section id="contact" style={{
-      padding: "100px 2rem",
+      padding: "140px 2rem",
       background: "var(--bg-secondary)",
       borderTop: "1px solid var(--border)",
     }}>
@@ -12,7 +12,7 @@ export default function Contact() {
         <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
           06. contact
         </p>
-        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, marginBottom: 20 }}>
+        <h2 style={{ fontSize: "clamp(2.4rem, 6vw, 3.6rem)", fontWeight: 600, letterSpacing: "-0.02em", marginBottom: 20 }}>
           Let's Build Together
         </h2>
         <p style={{ color: "var(--text-secondary)", fontSize: 16, lineHeight: 1.8, marginBottom: 48, maxWidth: 520, margin: "0 auto 48px" }}>
@@ -23,12 +23,12 @@ export default function Contact() {
         <a href={`mailto:${personalInfo.email}`} style={{
           display: "inline-flex", alignItems: "center", gap: 10,
           padding: "14px 32px",
-          background: "var(--accent-cyan)", color: "var(--bg-primary)",
-          borderRadius: 8, fontWeight: 700, fontSize: 15,
+          background: "var(--accent-cyan)", color: "#ffffff",
+          borderRadius: 980, fontWeight: 500, fontSize: 16,
           marginBottom: 48, transition: "all 0.2s",
           textDecoration: "none",
         }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px rgba(0,212,255,0.3)"; }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px rgba(0,0,0,0.15)"; }}
         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
         >
           <Send size={16} />
@@ -55,8 +55,8 @@ export default function Contact() {
                 padding: "10px 20px",
                 background: "var(--bg-card)",
                 border: "1px solid var(--border)",
-                borderRadius: 8, color: "var(--text-secondary)",
-                fontFamily: "var(--font-mono)", fontSize: 13,
+                borderRadius: 980, color: "var(--text-secondary)",
+                fontFamily: "var(--font-display)", fontSize: 14,
                 transition: "all 0.2s", textDecoration: "none",
               }}
               onMouseEnter={e => {

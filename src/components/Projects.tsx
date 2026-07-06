@@ -10,12 +10,12 @@ interface ProjectsProps {
 
 export default function Projects({ onSelectProject }: ProjectsProps) {
   return (
-    <section id="projects" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="projects" style={{ padding: "140px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <div style={{ marginBottom: 48 }}>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
           03. projects
         </p>
-        <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700 }}>
+        <h2 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 600, letterSpacing: "-0.02em" }}>
           What I've Built
         </h2>
         <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />
@@ -73,8 +73,8 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
               {project.tags.map((tag) => (
                 <span key={tag} style={{
                   padding: "3px 10px",
-                  background: "rgba(0,212,255,0.06)",
-                  border: "1px solid rgba(0,212,255,0.15)",
+                  background: "rgba(0,0,0,0.035)",
+                  border: "1px solid rgba(0,0,0,0.12)",
                   borderRadius: 4,
                   fontFamily: "var(--font-mono)", fontSize: 11,
                   color: "var(--text-muted)",

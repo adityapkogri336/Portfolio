@@ -4,7 +4,7 @@ import { Briefcase, FlaskConical } from "lucide-react";
 export default function Experience() {
   return (
     <section id="experience" style={{
-      padding: "100px 2rem",
+      padding: "140px 2rem",
       background: "var(--bg-secondary)",
       borderTop: "1px solid var(--border)",
       borderBottom: "1px solid var(--border)",
@@ -14,7 +14,7 @@ export default function Experience() {
           <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent-cyan)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 8 }}>
             04. experience
           </p>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700 }}>
+          <h2 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", fontWeight: 600, letterSpacing: "-0.02em" }}>
             Where I've Worked
           </h2>
           <div style={{ width: 48, height: 3, background: "var(--accent-cyan)", marginTop: 12, borderRadius: 2 }} />

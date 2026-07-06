@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? "rgba(5,10,15,0.95)" : "transparent",
+      background: scrolled ? "rgba(255,255,255,0.85)" : "transparent",
       borderBottom: scrolled ? "1px solid var(--border)" : "none",
       backdropFilter: scrolled ? "blur(12px)" : "none",
       transition: "all 0.3s ease",
@@ -46,11 +46,11 @@ export default function Navbar() {
         <button onClick={() => handleNav("#hero")} style={{
           background: "none", border: "none", cursor: "pointer",
           display: "flex", alignItems: "center", gap: 8,
-          fontFamily: "var(--font-mono)", fontSize: 15, fontWeight: 700,
-          color: "var(--accent-cyan)",
+          fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600,
+          color: "var(--text-primary)",
         }}>
-          <Zap size={18} fill="currentColor" />
-          {personalInfo.name.split(" ")[0].toLowerCase()}.eng
+          <Zap size={18} fill="currentColor" color="var(--accent-cyan)" />
+          {personalInfo.name.split(" ")[0]}
         </button>
 
         {/* Desktop Links */}
@@ -58,7 +58,7 @@ export default function Navbar() {
           {navLinks.map((l) => (
             <button key={l.href} onClick={() => handleNav(l.href)} style={{
               background: "none", border: "none", cursor: "pointer",
-              fontFamily: "var(--font-mono)", fontSize: 13,
+              fontFamily: "var(--font-display)", fontSize: 14,
               color: active === l.href ? "var(--accent-cyan)" : "var(--text-secondary)",
               transition: "color 0.2s",
             }}
@@ -69,17 +69,17 @@ export default function Navbar() {
             </button>
           ))}
           <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer" style={{
-            padding: "6px 16px",
+            padding: "8px 18px",
             border: "1px solid var(--accent-cyan)",
             color: "var(--accent-cyan)",
-            fontFamily: "var(--font-mono)", fontSize: 12,
-            borderRadius: 4, transition: "all 0.2s",
+            fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 500,
+            borderRadius: 980, transition: "all 0.2s",
             background: "transparent",
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "var(--accent-cyan)"; (e.currentTarget as HTMLElement).style.color = "var(--bg-primary)"; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "var(--accent-cyan)"; (e.currentTarget as HTMLElement).style.color = "#ffffff"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)"; }}
           >
-            Resume ↗
+            Resume
           </a>
         </div>
 
@@ -103,7 +103,7 @@ export default function Navbar() {
           {navLinks.map((l) => (
             <button key={l.href} onClick={() => handleNav(l.href)} style={{
               background: "none", border: "none", cursor: "pointer", textAlign: "left",
-              fontFamily: "var(--font-mono)", fontSize: 14,
+              fontFamily: "var(--font-display)", fontSize: 15,
               color: "var(--text-secondary)",
             }}>
               {l.label}
