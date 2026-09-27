@@ -192,7 +192,7 @@ export const projects = [
   },
   {
     id: 5,
-    title: "Synchronous FIFO — UVM Verification",
+    title: "Synchronous FIFO - UVM Verification",
     description: "An 8-deep, 8-bit synchronous FIFO in Verilog verified with a full UVM testbench — directed tests, constrained-random stimulus, functional coverage, and SystemVerilog Assertions, following industry coverage-driven verification methodology.",
     tags: ["SystemVerilog", "UVM", "Verilog", "SVA", "Functional Coverage", "Cadence Xcelium"],
     category: "Design Verification",
@@ -200,7 +200,7 @@ export const projects = [
     demo: null,
     image: null,
     highlights: [
-      "Built a complete reusable UVM environment — driver, monitor, scoreboard, and functional coverage",
+      "Built a complete reusable UVM environment - driver, monitor, scoreboard, and functional coverage",
       "Drove weighted-random (60/40 write/read) sequences to generate realistic mixed traffic",
       "Bound an SVA checker to the DUT via 'bind' with zero changes to the RTL source",
     ],
