@@ -190,6 +190,57 @@ export const projects = [
     ],
     year: "2025",
   },
+  {
+    id: 5,
+    title: "Synchronous FIFO — UVM Verification",
+    description: "An 8-deep, 8-bit synchronous FIFO in Verilog verified with a full UVM testbench — directed tests, constrained-random stimulus, functional coverage, and SystemVerilog Assertions, following industry coverage-driven verification methodology.",
+    tags: ["SystemVerilog", "UVM", "Verilog", "SVA", "Functional Coverage", "Cadence Xcelium"],
+    category: "Design Verification",
+    github: "https://github.com/adityapkogri336/sync-fifo-uvm-verification",
+    demo: null,
+    image: null,
+    highlights: [
+      "Built a complete reusable UVM environment — driver, monitor, scoreboard, and functional coverage",
+      "Drove weighted-random (60/40 write/read) sequences to generate realistic mixed traffic",
+      "Bound an SVA checker to the DUT via 'bind' with zero changes to the RTL source",
+    ],
+    workflow: [
+      { step: "RTL Design", description: "Designed a parameterized synchronous FIFO in Verilog (rtl/sync_fifo.v) with independent write/read logic gated by full/empty flags derived combinationally from wrap-bit pointers." },
+      { step: "Directed Testbench", description: "Wrote a self-checking directed SystemVerilog testbench that writes/reads known values and explicitly drives the FIFO to full/empty to test overflow/underflow guards." },
+      { step: "UVM Environment Build", description: "Built a complete reusable UVM testbench: interface, randomizable transactions (weighted 60/40 write/read), driver, monitor, scoreboard modeling expected FIFO contents in a queue, and standard agent/env/test hierarchy." },
+      { step: "Constrained-Random Verification", description: "Ran weighted-random sequences to generate realistic mixed read/write traffic, surfacing interactions directed tests wouldn't think to write." },
+      { step: "Functional Coverage Analysis", description: "Measured toggle coverage on wr_en/rd_en/full/empty plus cross coverage on (full, wr_en) and (empty, rd_en). Random testing alone reached only 83.33% coverage since the FIFO was never driven to full." },
+      { step: "Coverage-Driven Test Writing", description: "Wrote a new directed fifo_fill_sequence specifically to force the FIFO to full=1, closing the coverage gap and reaching 100% functional coverage." },
+      { step: "Assertion-Based Checking", description: "Wrote 3 SystemVerilog Assertions checking structural protocol invariants (full/empty mutual exclusion, no state change on write-while-full or read-while-empty), bound to the DUT externally via 'bind' with zero changes to the RTL source." },
+      { step: "Debug & Signoff", description: "Root-caused and fixed 4 real timing/race-condition bugs using signal traces, then reached final signoff: 100% functional coverage, 0 scoreboard errors, 0 assertion violations on Cadence Xcelium 25.03." },
+    ],
+    problem: "Build a verification environment that catches bugs an ad-hoc test would miss — overflow/underflow corruption, race conditions between driver and DUT, and structural protocol violations — rather than just confirming the FIFO works once.",
+    approach: "Designed a parameterized synchronous FIFO (configurable depth/width) using extra 'wrap' bits on the read/write pointers to distinguish full from empty at the same index. Built two testbenches side by side: a self-checking directed SystemVerilog testbench, and a complete reusable UVM environment (interface, randomizable transactions, sequences, driver, monitor, scoreboard, functional coverage, and a bind-based SVA checker) following a standard coverage-driven verification flow.",
+    toolsUsed: [
+      { name: "Cadence Xcelium 25.03", purpose: "UVM 1.2 simulation and functional coverage" },
+      { name: "SystemVerilog / UVM", purpose: "Testbench, sequences, driver/monitor/scoreboard architecture" },
+      { name: "SystemVerilog Assertions (SVA)", purpose: "Independent protocol checking via bind-based checker" },
+      { name: "EDA Playground", purpose: "Cloud-based simulation environment for running the regression" },
+    ],
+    results: [
+      "100% functional coverage across all coverpoints and crosses",
+      "0 scoreboard errors, 0 assertion violations at final signoff",
+      "Found and root-caused 4 real timing/race-condition bugs via signal tracing (not trial and error)",
+      "Closed an 83.33% -> 100% coverage gap by writing a targeted directed sequence to force the FIFO to full",
+    ],
+    challenges: [
+      { challenge: "A reset race where the first transaction could be driven before reset was released", solution: "Root-caused via signal traces and fixed by correctly sequencing driver start relative to reset deassertion" },
+      { challenge: "A driver/DUT signal race from driving inputs on the same clock edge the DUT samples them", solution: "Adjusted driver timing relative to the clocking scheme to respect SystemVerilog non-blocking assignment semantics" },
+      { challenge: "Monitor sampling rd_data before the DUT's non-blocking assignment had settled", solution: "Corrected monitor sampling point to occur after NBA updates settle" },
+      { challenge: "A monitor status-flag race where 'empty' transitioning on the same edge as a successful read caused that read to be silently dropped", solution: "Fixed monitor logic to correctly capture the read transaction before the flag transition was observed" },
+    ],
+    learnings: [
+      "Deepened understanding of SystemVerilog non-blocking assignment semantics and how they drive real race conditions in driver/monitor design",
+      "Coverage-driven verification: random testing alone doesn't guarantee reaching every state — functional coverage has to be measured and gaps closed with targeted directed tests",
+      "bind-based assertion checkers let you verify a DUT's structural contract without ever touching the RTL source",
+    ],
+    year: "2026",
+  },
 ];
 
 export const experience = [
