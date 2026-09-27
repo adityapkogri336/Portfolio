@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
 
 const navLinks = [
@@ -39,20 +39,9 @@ export default function Navbar() {
     }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "flex-end",
         height: 64,
       }}>
-        {/* Logo */}
-        <button onClick={() => handleNav("#hero")} style={{
-          background: "none", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", gap: 8,
-          fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600,
-          color: "var(--text-primary)",
-        }}>
-          <Zap size={18} fill="currentColor" color="var(--accent-cyan)" />
-          {personalInfo.name.split(" ")[0]}
-        </button>
-
         {/* Desktop Links */}
         <div style={{ display: "flex", gap: "2rem", alignItems: "center" }} className="desktop-nav">
           {navLinks.map((l) => (
